@@ -22,3 +22,5 @@ Un projet de roue de la fortune avec des segments colorés et des textes personn
 MIT
 
 # Have fun !
+
+😁​
