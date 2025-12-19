@@ -1190,82 +1190,128 @@ body {
 @media (max-width: 1200px) {
   .main-content {
     grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
   }
 
-  .players-section {
+  .players-section,
+  .history-section {
     max-height: 400px;
+    width: 100%;
+    margin-top: var(--spacing-md);
+  }
+
+  .wheel-section {
+    order: -1;
+    /* Ensure wheel is always on top */
   }
 }
 
 @media (max-width: 768px) {
+  .app-container {
+    padding: var(--spacing-md);
+  }
+
   .app-title {
     font-size: 1.8rem;
   }
 
-  .title-icon {
-    font-size: 2rem;
-  }
-
+  /* Fluid Wheel Container */
   .wheel-container {
-    width: 350px;
-    height: 350px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    /* Keep it square */
   }
 
   #wheelCanvas {
-    width: 350px !important;
-    height: 350px !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 
   .center-button {
-    width: 90px;
-    height: 90px;
+    width: 20%;
+    height: 20%;
+    /* Relative to container */
+    min-width: 70px;
+    min-height: 70px;
   }
 
   .center-button-text {
     font-size: 1rem;
   }
 
+  /* Modal Responsiveness */
   .modal-content {
-    max-width: 95%;
+    width: 95%;
+    max-height: 85vh;
+    margin: var(--spacing-sm);
+  }
+
+  .modal-header {
+    padding: var(--spacing-md);
+  }
+
+  .modal-body {
+    padding: var(--spacing-md);
+  }
+
+  /* Color Presets Grid */
+  .color-presets {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
-  .app-container {
+  .app-header {
+    margin-bottom: var(--spacing-md);
     padding: var(--spacing-sm);
   }
 
-  .app-header {
-    flex-direction: column;
-    gap: var(--spacing-sm);
+  .app-title {
+    font-size: 1.5rem;
   }
 
   .wheel-container {
-    width: 280px;
-    height: 280px;
-  }
-
-  #wheelCanvas {
-    width: 280px !important;
-    height: 280px !important;
+    max-width: 100%;
+    /* Use full width on very small screens */
   }
 
   .pointer {
-    right: -20px;
+    right: -15px;
   }
 
   .pointer-arrow {
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
-    border-right: 35px solid #fbbf24;
+    border-top-width: 15px;
+    border-bottom-width: 15px;
+    border-right-width: 30px;
   }
 
-  .center-button {
-    width: 70px;
-    height: 70px;
+  /* Compact Players List */
+  .player-card {
+    padding: var(--spacing-sm);
   }
 
-  .center-button-text {
-    font-size: 0.8rem;
+  .player-name {
+    font-size: 1rem;
+  }
+
+  .btn-remove {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  /* Result Display scaling */
+  .result-value {
+    font-size: 1.5rem;
+  }
+
+  .result-modal-prize {
+    font-size: 2rem;
+  }
+
+  .result-emoji {
+    font-size: 3rem;
   }
 }
