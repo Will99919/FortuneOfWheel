@@ -493,11 +493,11 @@ class FortuneWheel {
 
     // Add event listeners for inputs
     segmentsList.querySelectorAll('.segment-color').forEach(input => {
-      input.addEventListener('change', (e) => this.updateSegmentColor(e.target.dataset.index, e.target.value));
+      input.addEventListener('input', (e) => this.updateSegmentColor(e.target.dataset.index, e.target.value));
     });
 
     segmentsList.querySelectorAll('.segment-text').forEach(input => {
-      input.addEventListener('change', (e) => this.updateSegmentText(e.target.dataset.index, e.target.value));
+      input.addEventListener('input', (e) => this.updateSegmentText(e.target.dataset.index, e.target.value));
     });
   }
 
@@ -551,11 +551,11 @@ class FortuneWheel {
     this.segments[index].color = color;
     this.saveSegments();
     this.renderWheel();
+  }
 
+  updateSegmentText(index, text) {
     this.segments[index].text = text;
     this.saveSegments();
-
-    // Also update history if needed? No, keep history as is
     this.renderWheel();
   }
 
