@@ -69,7 +69,6 @@ class FortuneWheel {
     document.getElementById('btnAddPlayer').addEventListener('click', () => this.openAddPlayerModal());
     document.getElementById('closeAddPlayer').addEventListener('click', () => this.closeModal('addPlayerModal'));
     document.getElementById('addPlayerOverlay').addEventListener('click', () => this.closeModal('addPlayerModal'));
-    document.getElementById('cancelAddPlayer').addEventListener('click', () => this.closeModal('addPlayerModal'));
     document.getElementById('confirmAddPlayer').addEventListener('click', () => this.addPlayer());
     document.getElementById('playerNameInput').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') this.addPlayer();
