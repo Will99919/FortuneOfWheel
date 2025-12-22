@@ -2,248 +2,73 @@
 <html lang="fr">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Roue de la Fortune personnalisable pour jouer en famille - Application web interactive">
-  <title>Roue de la Fortune - Jeu Familial</title>
-  <link rel="icon" href="./wheel-of-fortune.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Collection de jeux interactifs - Roue de la Fortune et plus encore">
+    <title>Fortune Games - Collection de Jeux</title>
+    <link rel="icon" href="./games/wheel/wheel-of-fortune.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- Particles Background -->
-  <div class="particles" id="particles"></div>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
 
-  <!-- Main Container -->
-  <div class="app-container">
-    <!-- Header -->
-    <header class="app-header">
-      <h1 class="app-title">Roue de la Fortune</h1>
-      <button class="btn-settings" id="btnSettings" aria-label="Paramètres">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="3"></circle>
-          <path
-            d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m-2 2l-4.2 4.2m13.2-5.2l-6 0m-6 0l-6 0m13.2 5.2l-4.2-4.2m-2-2l-4.2-4.2">
-          </path>
-        </svg>
-      </button>
-    </header>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">Fortune Games</h1>
+            <p class="subtitle">Choisissez votre jeu et amusez-vous !</p>
+        </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Wheel Section -->
-      <section class="wheel-section">
-        <div class="wheel-container" id="wheelContainer">
-          <!-- Pointer -->
-          <div class="pointer">
-            <div class="pointer-arrow"></div>
-          </div>
+        <!-- Games Grid -->
+        <main class="games-grid">
+            <!-- Wheel of Fortune Game Card -->
+            <a href="./games/wheel/wheel.html" class="game-card">
+                <div class="game-card-icon">🎯</div>
+                <h2 class="game-card-title">Roue de la Fortune</h2>
+                <p class="game-card-description">Tournez la roue et découvrez qui gagne ! Personnalisez les segments.
+                    Have Fun !</p>
+                <div class="game-card-badge">Jouer</div>
+            </a>
 
-          <!-- Wheel Canvas -->
-          <canvas id="wheelCanvas" width="500" height="500"></canvas>
+            <!-- Hangman Game Card -->
+            <a href="./games/hangman/index.html" class="game-card">
+                <div class="game-card-icon">🕹️​</div>
+                <h2 class="game-card-title">Mot de la Fortune</h2>
+                <p class="game-card-description">Devinez la phrase lettre par lettre !</p>
+                <div class="game-card-badge">Jouer</div>
+            </a>
 
-          <!-- Center Button -->
-          <button class="center-button" id="spinButton">
-            <span class="center-button-text">LANCER</span>
-          </button>
-        </div>
+            <!-- Placeholder for Future Game 2 -->
+            <div class="game-card game-card-disabled">
+                <div class="game-card-icon">​⚠️</div>
+                <h2 class="game-card-title">Prochainement</h2>
+                <p class="game-card-description">Bientot Disponible !</p>
+                <div class="game-card-badge game-card-badge-soon">Bientôt</div>
+            </div>
 
-        <!-- Result Display -->
-        <div class="result-display" id="resultDisplay">
-          <div class="result-label">Dernier résultat</div>
-          <div class="result-value" id="resultValue">-</div>
-        </div>
-      </section>
+            <!-- Placeholder for Future Game 3 -->
+            <div class="game-card game-card-disabled">
+                <div class="game-card-icon">⚠️</div>
+                <h2 class="game-card-title">Prochainement</h2>
+                <p class="game-card-description">Bientot Disponible !</p>
+                <div class="game-card-badge game-card-badge-soon">Bientôt</div>
+            </div>
+        </main>
 
-      <!-- Players Section -->
-      <section class="players-section">
-        <div class="section-header">
-          <h2 class="section-title">👥 Joueurs</h2>
-          <button class="btn-add" id="btnAddPlayer">+ Ajouter</button>
-        </div>
-
-        <div class="players-list" id="playersList">
-          <div class="empty-state">
-            <p>Aucun joueur ajouté</p>
-            <p class="empty-state-hint">Cliquez sur "+ Ajouter" pour commencer</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- History Section -->
-      <section class="history-section">
-        <div class="section-header">
-          <h2 class="section-title">📜 Historique</h2>
-          <button class="btn-clear" id="btnClearHistory">Vider</button>
-        </div>
-
-        <div class="history-list" id="historyList">
-          <div class="empty-state">
-            <p>Aucun tour joué</p>
-            <p class="empty-state-hint">L'historique apparaîtra ici</p>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <!-- Settings Modal -->
-  <div class="modal" id="settingsModal">
-    <div class="modal-overlay" id="settingsOverlay"></div>
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">⚙️ Configuration</h2>
-        <button class="modal-close" id="closeSettings" aria-label="Fermer">×</button>
-      </div>
-
-      <div class="modal-body">
-        <!-- Game Mode -->
-        <div class="form-group">
-          <label class="form-label">Mode de jeu</label>
-          <div class="game-mode-selector">
-            <label class="game-mode-card">
-              <input type="radio" name="gameMode" value="classic" checked>
-              <div class="game-mode-content">
-                <div class="game-mode-icon">🎯</div>
-                <div class="game-mode-info">
-                  <div class="game-mode-title">Classique</div>
-                  <div class="game-mode-desc">Rotation simple et répétée</div>
-                </div>
-              </div>
-            </label>
-
-            <label class="game-mode-card">
-              <input type="radio" name="gameMode" value="elimination">
-              <div class="game-mode-content">
-                <div class="game-mode-icon">🗑️</div>
-                <div class="game-mode-info">
-                  <div class="game-mode-title">Élimination</div>
-                  <div class="game-mode-desc">Retrait des segments gagnés</div>
-                </div>
-              </div>
-            </label>
-
-            <label class="game-mode-card">
-              <input type="radio" name="gameMode" value="points">
-              <div class="game-mode-content">
-                <div class="game-mode-icon">🏆</div>
-                <div class="game-mode-info">
-                  <div class="game-mode-title">Points</div>
-                  <div class="game-mode-desc">Accumulation de points</div>
-                </div>
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <!-- Spin Speed -->
-        <div class="form-group">
-          <label class="form-label">Vitesse de rotation</label>
-          <input type="range" class="form-range" id="spinSpeed" min="1" max="3" step="1" value="2">
-          <div class="range-labels">
-            <span>Lente</span>
-            <span>Moyenne</span>
-            <span>Rapide</span>
-          </div>
-        </div>
-
-        <!-- Sound Toggle -->
-        <div class="form-group">
-          <label class="form-label">
-            <input type="checkbox" class="form-checkbox" id="soundEnabled" checked>
-            Activer les sons
-          </label>
-        </div>
-
-        <!-- Segments Configuration -->
-        <div class="form-group">
-          <div class="segments-header">
-            <label class="form-label">Segments de la roue</label>
-            <button class="btn-small" id="btnAddSegment">+ Segment</button>
-          </div>
-          <div class="segments-list" id="segmentsList"></div>
-        </div>
-
-        <!-- Preset Colors -->
-        <div class="form-group">
-          <label class="form-label">Palettes de couleurs</label>
-          <div class="color-presets" id="colorPresets">
-            <button class="color-preset" data-preset="vibrant" title="Vibrant">
-              <span style="background: #FF6B6B"></span>
-              <span style="background: #4ECDC4"></span>
-              <span style="background: #45B7D1"></span>
-              <span style="background: #FFA07A"></span>
-            </button>
-            <button class="color-preset" data-preset="pastel" title="Pastel">
-              <span style="background: #FFB3BA"></span>
-              <span style="background: #BAFFC9"></span>
-              <span style="background: #BAE1FF"></span>
-              <span style="background: #FFFFBA"></span>
-            </button>
-            <button class="color-preset" data-preset="neon" title="Néon">
-              <span style="background: #FF006E"></span>
-              <span style="background: #8338EC"></span>
-              <span style="background: #3A86FF"></span>
-              <span style="background: #FFBE0B"></span>
-            </button>
-            <button class="color-preset" data-preset="ocean" title="Océan">
-              <span style="background: #06FFA5"></span>
-              <span style="background: #00D9FF"></span>
-              <span style="background: #0096FF"></span>
-              <span style="background: #7B68EE"></span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Reset Button -->
-        <div class="form-group">
-          <button class="btn-danger" id="btnResetAll">🔄 Réinitialiser tout</button>
-        </div>
-      </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Développé par <a class="footer-link" href="https://github.com/Will99919">Will99919</a></p>
+        </footer>
     </div>
-  </div>
 
-  <!-- Result Modal -->
-  <div class="modal" id="resultModal">
-    <div class="modal-overlay" id="resultOverlay"></div>
-    <div class="modal-content modal-result">
-      <div class="confetti" id="confetti"></div>
-      <div class="result-modal-content">
-        <div class="result-emoji">🎉</div>
-        <h2 class="result-modal-title">Félicitations !</h2>
-        <div class="result-modal-winner" id="modalWinner">-</div>
-        <div class="result-modal-label">a gagné</div>
-        <div class="result-modal-prize" id="modalPrize">-</div>
-        <button class="btn-primary" id="closeResult">Continuer</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Add Player Modal -->
-  <div class="modal" id="addPlayerModal">
-    <div class="modal-overlay" id="addPlayerOverlay"></div>
-    <div class="modal-content modal-small">
-      <div class="modal-header">
-        <h2 class="modal-title">Ajouter un joueur</h2>
-        <button class="modal-close" id="closeAddPlayer" aria-label="Fermer">×</button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label class="form-label">Nom du joueur</label>
-          <input type="text" class="form-input" id="playerNameInput" placeholder="Entrez un nom..." maxlength="20">
-        </div>
-        <div class="modal-actions">
-          <button class="btn-primary" id="confirmAddPlayer">Ajouter</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
