@@ -1,10 +1,10 @@
-# Fortune Games 🎮
+# Fortune Games
 
 Une collection de jeux interactifs pour s'amuser en famille et entre amis !
 
-## 🎯 Jeux Disponibles
+## Jeux Disponibles
 
-### Roue de la Fortune 🎡
+### Roue de la Fortune
 Un jeu de roue personnalisable avec des segments colorés et des textes personnalisés. Parfait pour les tirages au sort, les jeux de société, et les animations familiales.
 
 **Fonctionnalités :**
@@ -13,45 +13,40 @@ Un jeu de roue personnalisable avec des segments colorés et des textes personna
 - Modes de jeu : Classique, Élimination, Points
 - Historique des tours
 - Design moderne et responsive
+- Interface utilisateur améliorée
 
-## 📁 Structure du Projet
+### Mot de la fortune
+Un jeu de mot de la fortune avec des mots personnalisés et des définitions. Parfait pour les jeux de société et les animations familiales.
 
-```
-FortuneOfWheel/
-├── index.html          # Page d'accueil avec sélection des jeux
-├── style.css           # Styles de la page d'accueil
-├── script.js           # Scripts de la page d'accueil
-├── games/
-│   └── wheel/          # Jeu de la Roue de la Fortune
-│       ├── index.html
-│       ├── style.css
-│       └── script.js
-└── README.md
-```
+**Fonctionnalités :**
+- Mots personnalisables (texte et définition)
+- Gestion des joueurs avec scores
+- Modes de jeu : Classique, Élimination, Points
+- Historique des tours
+- Design moderne et responsive
+- Interface utilisateur améliorée
 
-## 🚀 Technologies Utilisées
+## Technologies Utilisées
 
 - HTML5
 - CSS3 (avec animations et glassmorphism)
-- JavaScript (Vanilla)
+- JavaScript
 
-## 💻 Installation
+## Installation
 
 1. Clonez le dépôt
 2. Ouvrez le fichier `index.html` dans votre navigateur
 3. Sélectionnez un jeu et amusez-vous !
 
-## 🎨 Fonctionnalités à Venir
+## Fonctionnalités à Venir
 
-- 🎲 Jeu de Dés
-- 🃏 Jeu de Cartes
-- 🎯 Jeu de Cible
+Bientôt Disponible
 
-## 👨‍💻 Auteur
+## Auteur
 
 - Will99919
 
-## 📄 License
+## License
 
 MIT
 
