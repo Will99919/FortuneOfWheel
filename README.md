@@ -40,7 +40,7 @@ Un jeu de mot de la fortune avec des mots personnalisés et des définitions. Pa
 
 ## Fonctionnalités à Venir
 
-Bientôt Disponible
+- Bientôt Disponible
 
 ## Auteur
 
