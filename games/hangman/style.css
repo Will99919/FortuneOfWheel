@@ -954,22 +954,27 @@ body {
     }
 
     .app-header {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
         gap: var(--spacing-sm);
         padding: var(--spacing-sm);
         text-align: center;
     }
 
     .app-title {
-        font-size: 1.8rem;
-        order: -1;
+        font-size: 1.6rem;
+        grid-column: 2;
+        grid-row: 1;
     }
 
-    .header-actions {
-        display: flex;
-        justify-content: center;
-        gap: var(--spacing-md);
-        width: 100%;
+    .btn-home {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .btn-settings {
+        grid-column: 3;
+        grid-row: 1;
     }
 
     .game-status {
