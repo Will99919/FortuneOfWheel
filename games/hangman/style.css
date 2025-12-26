@@ -188,6 +188,13 @@ body {
     background-clip: text;
 }
 
+.status-item.active-player {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+    transform: scale(1.02);
+    transition: all var(--transition-base);
+}
+
 /* Phrase Grid (14x4 - Wheel of Fortune Style) */
 .phrase-grid-container {
     background: rgba(255, 255, 255, 0.05);

@@ -54,7 +54,7 @@
                         <span class="status-label">Catégorie</span>
                         <span class="status-value" id="categoryDisplay">-</span>
                     </div>
-                    <div class="status-item">
+                    <div class="status-item" id="currentPlayerContainer">
                         <span class="status-label">Joueur actuel</span>
                         <span class="status-value" id="currentPlayer">-</span>
                     </div>
@@ -149,6 +149,14 @@
                     <input type="text" class="form-input" id="categoryInput" placeholder="Ex: Film, Pays, Animal..."
                         maxlength="30">
                     <p class="form-hint">Permet de donner un indice aux joueurs</p>
+                </div>
+
+                <!-- Sound Toggle -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <input type="checkbox" class="form-checkbox" id="errorsEnabled" checked>
+                        Activer le système d'erreurs
+                    </label>
                 </div>
 
                 <!-- Sound Toggle -->

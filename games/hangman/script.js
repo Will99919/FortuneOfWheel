@@ -4,6 +4,7 @@ const gameState = {
     category: '',
     maxErrors: 6,
     currentErrors: 0,
+    errorsEnabled: true,
     usedLetters: new Set(),
     revealedLetters: new Set(),
     players: [],
@@ -36,6 +37,7 @@ const elements = {
     phraseGrid: document.getElementById('phraseGrid'),
     errorsCount: document.getElementById('errorsCount'),
     currentPlayer: document.getElementById('currentPlayer'),
+    currentPlayerContainer: document.getElementById('currentPlayerContainer'),
     playersList: document.getElementById('playersList'),
     historyList: document.getElementById('historyList'),
     categoryDisplay: document.getElementById('categoryDisplay'),
@@ -46,9 +48,11 @@ const elements = {
     categoryInput: document.getElementById('categoryInput'),
     maxErrors: document.getElementById('maxErrors'),
     maxErrorsValue: document.getElementById('maxErrorsValue'),
+    errorsEnabled: document.getElementById('errorsEnabled'),
     soundEnabled: document.getElementById('soundEnabled'),
     playerNameInput: document.getElementById('playerNameInput'),
-    letterInput: document.getElementById('letterInput')
+    letterInput: document.getElementById('letterInput'),
+    errorsContainer: document.querySelector('.status-item:has(#errorsCount)')
 };
 
 // ===== Initialize =====
@@ -130,6 +134,7 @@ function openModal(modal) {
         elements.categoryInput.value = gameState.category;
         elements.maxErrors.value = gameState.maxErrors;
         elements.maxErrorsValue.textContent = `${gameState.maxErrors} erreurs`;
+        elements.errorsEnabled.checked = gameState.errorsEnabled;
         elements.soundEnabled.checked = gameState.soundEnabled;
     }
     modal.classList.add('active');
@@ -166,9 +171,15 @@ function applySettings() {
         return;
     }
 
-    gameState.phrase = phrase.toUpperCase();
+    gameState.phrase = phrase
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toUpperCase()
+        .replace(/[^A-Z\s]/g, " ")
+        .trim();
     gameState.category = elements.categoryInput.value.trim();
     gameState.maxErrors = parseInt(elements.maxErrors.value);
+    gameState.errorsEnabled = elements.errorsEnabled.checked;
     gameState.soundEnabled = elements.soundEnabled.checked;
 
     saveToLocalStorage();
@@ -223,17 +234,17 @@ function guessLetter(letter) {
         // Check for win
         if (checkWin()) {
             setTimeout(() => handleWin(), 500);
-        } else {
-            nextPlayer();
         }
     } else {
         // Incorrect guess
-        gameState.currentErrors++;
+        if (gameState.errorsEnabled) {
+            gameState.currentErrors++;
+        }
 
         if (gameState.soundEnabled) playSound('incorrect');
 
         // Check for loss
-        if (gameState.currentErrors >= gameState.maxErrors) {
+        if (gameState.errorsEnabled && gameState.currentErrors >= gameState.maxErrors) {
             setTimeout(() => handleLoss(), 500);
         } else {
             nextPlayer();
@@ -448,13 +459,20 @@ function updateDisplay() {
     }
 
     // Update errors count
-    elements.errorsCount.textContent = `${gameState.currentErrors} / ${gameState.maxErrors}`;
+    if (gameState.errorsEnabled) {
+        elements.errorsCount.textContent = `${gameState.currentErrors} / ${gameState.maxErrors}`;
+        elements.errorsContainer.style.display = 'flex';
+    } else {
+        elements.errorsContainer.style.display = 'none';
+    }
 
     // Update current player
     if (gameState.players.length > 0) {
         elements.currentPlayer.textContent = gameState.players[gameState.currentPlayerIndex].name;
+        elements.currentPlayerContainer.classList.add('active-player');
     } else {
         elements.currentPlayer.textContent = '-';
+        elements.currentPlayerContainer.classList.remove('active-player');
     }
 }
 
@@ -649,6 +667,7 @@ function saveToLocalStorage() {
         phrase: gameState.phrase,
         category: gameState.category,
         maxErrors: gameState.maxErrors,
+        errorsEnabled: gameState.errorsEnabled,
         soundEnabled: gameState.soundEnabled,
         players: gameState.players,
         history: gameState.history
@@ -663,6 +682,7 @@ function loadFromLocalStorage() {
             gameState.phrase = data.phrase || '';
             gameState.category = data.category || '';
             gameState.maxErrors = data.maxErrors || 6;
+            gameState.errorsEnabled = data.errorsEnabled !== false;
             gameState.soundEnabled = data.soundEnabled !== false;
             gameState.players = data.players || [];
             gameState.history = data.history || [];
@@ -672,6 +692,7 @@ function loadFromLocalStorage() {
             elements.categoryInput.value = gameState.category;
             elements.maxErrors.value = gameState.maxErrors;
             elements.maxErrorsValue.textContent = `${gameState.maxErrors} erreurs`;
+            elements.errorsEnabled.checked = gameState.errorsEnabled;
             elements.soundEnabled.checked = gameState.soundEnabled;
         } catch (e) {
             console.error('Error loading from localStorage:', e);
